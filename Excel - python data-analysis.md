@@ -24,4 +24,6 @@ df = pd.DataFrame({"id":[1001,1002,1003,1004,1005,1006],
                    "price":[1200,np.nan,2133,5433,np.nan,4432]},
                    columns =['id','date','city','category','age','price'])
 ```
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E8%A1%A8.jpg)
+
 
