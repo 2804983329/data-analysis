@@ -61,30 +61,77 @@ df.shape
 
 ### 查看数据格式     
 Excel中通过选中单元格并查看开始菜单中的数值类型来判断数据的格式。Python中使用dtypes函数来返回数据格式
-![image](https://github.com/2804983329/data-analysis/blob/master/picture/excel%E6%9F%A5%E7%9C%8B%E6%A0%BC%E5%BC%8F.jpg)
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/excel查看格式.jpg)
 Dtypes是一个查看数据格式的函数，可以一次性查看数据表中所有数据的格式，也可以指定一列来单独查看。
 ```python
-1#查看数据表各列格式
- 2df.dtypes
- 3
- 4id                   int64
- 5date        datetime64[ns]
- 6city                object
- 7category            object
- 8age                  int64
- 9price              float64
-10dtype: object
-11
-12#查看单列格式
-13df['B'].dtype
-14
-15dtype('int64')
+#查看数据表各列格式
+ df.dtypes
+ 
+ id                   int64
+ date        datetime64[ns]
+ city                object
+ category            object
+ age                  int64
+ price              float64
+ dtype: object
+
+#查看单列格式
+df['B'].dtype
+
+dtype('int64')
 ```
 
+### 查看空值   
+Excel中查看空值的方法是使用 “定位条件” 功能对数据表中的空值进行定位。“定位条件”在“开始”目录下的“查找和选择”目录中。
+Isnull 是Python中检查空值的函数，返回的结果是逻辑值，包含空值返回True，不包含则返回False。可以对整个数据表进行检查，也可以单独对某一列进行空值检查。
+```python
+#检查数据空值
+df.isnull()
+```
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/jianchashujukongzhi.jpg)
 
+```python
+#检查特定列空值
+df['price'].isnull()
 
+ 0    False
+ 1     True
+ 2    False
+ 3    False
+ 4     True
+ 5    False
+10Name: price, dtype: bool
+```
 
+### 查看唯一值   
+Excel中查看唯一值的方法是使用 “条件格式” 对唯一值进行颜色标记。 Python中使用unique函数查看唯一值。   
+Unique是查看唯一值的函数，只能对数据表中的特定列进行检查。下面是代码，返回的结果是该列中的唯一值。类似于Excel中删除重复项后的结果。
+```python
+#查看 city 列中的唯一值
+df['city'].unique()
 
+array(['Beijing ', 'SH', ' guangzhou ', 'Shenzhen', 'shanghai', 'BEIJING '], dtype=object)
+```
+
+### 查看数据表数值   
+Python中的Values函数用来查看数据表中的数值。以数组的形式返回，不包含表头信息。
+
+```python
+#查看数据表的值
+df.values
+
+array([[1001, Timestamp('2013-01-02 00:00:00'), 'Beijing ', '100-A', 23,
+         1200.0],
+        [1002, Timestamp('2013-01-03 00:00:00'), 'SH', '100-B', 44, nan],
+        [1003, Timestamp('2013-01-04 00:00:00'), ' guangzhou ', '110-A', 54,
+         2133.0],
+        [1004, Timestamp('2013-01-05 00:00:00'), 'Shenzhen', '110-C', 32,
+        5433.0],
+       [1005, Timestamp('2013-01-06 00:00:00'), 'shanghai', '210-A', 34,
+        nan],
+       [1006, Timestamp('2013-01-07 00:00:00'), 'BEIJING ', '130-F', 32,
+        4432.0]], dtype=object)
+```
 
 
 
