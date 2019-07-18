@@ -133,8 +133,25 @@ array([[1001, Timestamp('2013-01-02 00:00:00'), 'Beijing ', '100-A', 23,
         4432.0]], dtype=object)
 ```
 
+### 查看列名称   
+
+Column函数用来单独查看数据表中的列名称
+
+```
+#查看列名称
+df.columns
+
+ Index(['id', 'date', 'city', 'category', 'age', 'price'], dtype='object')
+```
 
 
+### 查看前10行数据
+Head函数用来查看数据表中的前N行数据，默认head()显示前10行数据，可以自己设置参数值来   
+确定查看的行数。查看前三行数据的代码如下   
+```
+#查看前3行数据
+```
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/chakanqiansanhangshuju.jpg)
 
 
 
