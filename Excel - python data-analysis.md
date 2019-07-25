@@ -174,7 +174,8 @@ df.tail(``3``)
 
 excel 中可以通过“查找和替换” 功能对空值进行处理，将空值统一替换为0或均值
 。也可以通过定位空值来实现。
-![image]()
+![image](https://github.com/2804983329/data-analysis/blob/master/chulikongzhi1.jpg)
+
 
 Python中处理空值的方法比较灵活，可以使用Dropna函数用来删除数据表中包含空值的数据
 ，也可以使用fillna函数对空值进行填充。下面代码和结构中可以看到使用dropna函数后，
@@ -184,12 +185,197 @@ Python中处理空值的方法比较灵活，可以使用Dropna函数用来删�
 df.dropna(how='any')
 ```
 
-![image]()
+![image](https://github.com/2804983329/data-analysis/blob/master/chulikongzhi2.jpg)
+
 
 除此之外也可以使用数字对空值进行填充，下面的代码使用fillna函数对空值字段填充数字0
+```python
+#使用数字 0 填充数据表中的空值
+df.fillna(value=0)
+```
+
+我们选择填充的方式来处理空值，使用price列的均值来填充NA字段，统一使用fillna函数，早要填充的数值中使用mean函数先计算price列当前的均值，然后使用这个均值对NA进行填充。可以看到两个空值字段显示为3299.5
+```python
+#使用price 均值对na进行填充
+df['price'].fillna(df['price'].mean())
+
+0    1200.0
+1    3299.5
+2    2133.0
+3    5433.0
+4    3299.5
+5    4432.0
+Name: price, dtype: float64
+```
+![image](https://github.com/2804983329/data-analysis/blob/master/chulikongzhi3.jpg)
+
+### 清理空格    
+除了空值，字符中的空格也是数据清洗中一个常见的问题，
+```python
+#清除 city字段找那个的的字符空格
+df['city']=df['city'].map(str.strip)
+```
+
+### 大小写转换   
+在 英文字段汇总，字母的大小写不统一也是一个常见的问题，Excel中有UPPER，LOWER等函数，python中也有同名函数来解决大小写的问题。在数据表的city列中就存在这样的问题，我们将city列中的所有字母转换成小写。代码如下：
+```python
+#city 列大小写转换
+df['city']=df['city'].str.lower()
+```
+
+![image](https://github.com/2804983329/data-analysis/blob/master/daxiaoxiezhuanhuan1.jpg)   
 
 
-![image]()
+### 更改数据格式   
+Excel中通过“设置单元格格式”功能可以修改数据格式，python中通过astype函数来修改数据格式
+
+![image](https://github.com/2804983329/data-analysis/blob/master/genggaishujugeshi1.jpg)   
+
+python中查看数据格式的函数是dtype，与之对应的是astype函数，用来更高数据格式，下面的代码中将price字段的值修改成int格式。
+```python
+#更改数据格式
+df['price'].astype('int')
+
+0    1200
+1    3299
+2    2133
+3    5433
+4    3299
+5    4432
+Name: price, dtype: int32
+```
+
+### 更改列名称    
+Rename是更改列名称的函数，我们将数据表中的category列更改为category-size。下面是具体的代码和更改后的结果
+```python
+#更改列名称
+df.rename(columns={'category': 'category-size'})
+```
+![image](https://github.com/2804983329/data-analysis/blob/master/genggailiemingcheng1.jpg) 
+
+### 删除重复值   
+很多数据表中还包含重复值的问题，Excel 的数据目录下有“删除重复项”的功能，可以用来删除数据表中的重复值。默认 Excel 会保留最先出现的数据，删除后面重复出现的数据。   
+Python 中使用 drop_duplicates 函数删除重复值。我们以数据表中的 city 列为例，city 字段中存在重复值。默认情况下 drop_duplicates()将删除后出现的重复值(与 excel 逻辑一致)。增加 keep=’last’参数后将删除最先出现的重复值，保留最后的值。下面是具体的代码和比较结果。
+
+原始的 city 列中 beijing 存在重复，分别在第一位和最后一位。
+```python
+df['city']
+0      beijing
+1           sh
+2    guangzhou
+3     shenzhen
+4     shanghai
+5      beijing
+Name: city, dtype: object
+```
+使用默认的 drop_duplicates()函数删除重复值，从结果中可以看到第一位的 beijing 被保留，最后出现的 beijing 被删除。
+```python
+#删除后出现的重复值
+df['city'].drop_duplicates()
+0       beijing
+1           sh
+2    guangzhou
+3     shenzhen
+4     shanghai
+
+Name: city, dtype: objec
+```
+设置 keep=’last‘’参数后，与之前删除重复值的结果相反，第一位出现的 beijing 被删除，保留了最后一位出现的 beijing。
+```python
+#删除先出现的重复值
+df['city'].drop_duplicates()
+1           sh
+2    guangzhou
+3     shenzhen
+4     shanghai
+5      beijing
+Name: city, dtype: objec
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
