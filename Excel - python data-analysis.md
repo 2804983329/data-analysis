@@ -292,97 +292,97 @@ df['city'].drop_duplicates()
 Name: city, dtype: objec
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+### 数值修改及替换    
+数据清洗中最后一个问题是数值修改或替换，Excel中使用“查找和替换”功能就可以实现数值的替换。
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/chazhaojitihuan.jpg) 
+Python中使用replace函数实现数据替换。数据表中city字段上还存在两种写法，分别为shanghai和SH。我们使用replace函数对SH进行替换。
+```python
+#数据替换
+df['city'].replace('SH','shanghai')
+0      beijing
+1     shanghai
+2    guangzhou
+3     shenzhen
+4     shanghai
+5      beijing
+Name: city, dtype: object
+```
+
+本篇文章这是系列的第二篇，介绍第4——6部分的内容，数据表的生成，数据表的查看，和数据清洗。
+
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/mulu2.jpg) 
+## 数据预处理    
+第四部分是数据的预处理，对清洗完的数据进行整理仪表后期的统计和分析工作，主要包括数据表的合并、排序、数据分裂、数据分组、标记等工作。
+### 数据表合并   
+首先是对不同的数据表进行合并，我们这里创建一个新的数据表df1，并将df和df1两个数据表进行合并。在Excel中没有直接完成数据表合并的功能，可以通过VLOOKUP函数分步实现，在python中可以通过merge函数一次性实现，下面建立df1数据表，用于和df数据表进行合并。
+```python
+#创建 df1 数据表
+df1=pd.DataFrame({"id":[1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008],
+"gender":['male','female','male','female','male','female','male','female'],
+"pay":['Y','N','Y','Y','N','Y','N','Y',],
+"m-point":[10,12,20,40,40,40,30,20] })
+```
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/chuangjianshujubiao1.jpg) 
+使用merge函数对两个数据表进行合并，合并方式为inner，将两个数据表中共有的数据匹配到一起生成新的数据表。并命名为df_inner.
+```python
+#数据表匹配合并，inner 模式
+df_inner=pd.merge(df,df1,how='inner')
+```
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/shujubiaohebing-inner.jpg) 
+
+除了inner方式以外，合并的方式还有left， right和outer方式，
+```python
+#其他数据表匹配模式
+df_left=pd.merge(df,df1,how='left')
+df_right=pd.merge(df,df1,how='right')
+df_outer=pd.merge(df,df1,how='outer')
+```
+
+### 设置索引列   
+完成数据表的合并后，我们对 df_inner 数据表设置索引列，索引列的功能很多，可以进行数据提取，汇总，也可以进行数据筛选等。
+设置索引的函数为 set_index。
+```python
+#设置索引列
+df_inner.set_index('id')
+```
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/shezhisuoyinlie.jpg) 
+
+### 排序(按索引，按数值)
+Excel 中可以通过数据目录下的排序按钮直接对数据表进行排序，比较简单。Python 中需要使用 ort_values 函数和 sort_index 函数完成排序。
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/paixu1.jpg) 
+在 python 中，既可以按索引对数据表进行排序，也可以看制定列的数值进行排序。首先我们按 age 列中用户的年龄对数据表进行排序。
+使用的函数为 sort_values。
+```python
+#按特定列的值排序
+df_inner.sort_values(by=['age'])
+```
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/paixu2.jpg) 
+Sort_index函数用来将数据表按索引列的值进行排序。
+```python
+#按索引列排序
+df_inner.sort_index()
+```
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/ansuoyinliepaixu1.jpg) 
+
+### 数据分组
+Excel 中可以通过 VLOOKUP 函数进行近似匹配来完成对数值的分组，或者使用“数据透视表”来完成分组。相应的 python 中使用 where 函数完成数据分组。
+
+Where 函数用来对数据进行判断和分组，下面的代码中我们对 price 列的值进行判断，将符合条件的分为一组，不符合条件的分为另一组，并使用 group 字段进行标记。
+```python
+#如果 price 列的值>3000，group 列显示 high，否则显示 low
+df_inner['group'] = np.where(df_inner['price'] > 3000,'high','low')
+```
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/shujufenzu1.jpg) 
+除了 where 函数以外，还可以对多个字段的值进行判断后对数据进行分组，下面的代码中对 city 列等于 beijing 并且 price 列大于等于 4000 的数据标记为 1。
+```python
+#对复合多个条件的数据进行分组标记
+df_inner.loc[(df_inner['city'] == 'beijing') & (df_inner['price'] >= 4000), 'sign']=1
+```
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/duifuhetiaojiandeshujujinxingfenzu.jpg) 
+
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/.jpg) 
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/.jpg) 
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/.jpg) 
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/.jpg) 
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/.jpg) 
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/.jpg) 
