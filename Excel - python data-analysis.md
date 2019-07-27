@@ -152,7 +152,6 @@ Head函数用来查看数据表中的前N行数据，默认head()显示前10行�
 #查看前3行数据
 ```
 ![image](https://github.com/2804983329/data-analysis/blob/master/picture/chakanqiansanhangshuju.jpg)
-![image](https://github.com/2804983329/data-analysis/blob/master/picture/chakanqiansanhangshuju.jpg)
 
 ### 查看后数据    
 tail函数和head函数相反，用来查看数据表中后N行的数据，   
@@ -161,8 +160,8 @@ tail函数和head函数相反，用来查看数据表中后N行的数据，
 #查看最后三行
 df.tail(``3``)
 ```
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/chakanhousanhang.jpg)
 
-![image]()
 
 ## 03数据表清洗
 第三部分是对数据表中的的问题进行清洗。主要内容包括对空值，大小写问题，数据格式和重复值的处理。   
@@ -175,7 +174,7 @@ df.tail(``3``)
 
 excel 中可以通过“查找和替换” 功能对空值进行处理，将空值统一替换为0或均值
 。也可以通过定位空值来实现。
-![image](https://github.com/2804983329/data-analysis/blob/master/chulikongzhi1.jpg)
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/chakanhousanhang.jpg)
 
 
 Python中处理空值的方法比较灵活，可以使用Dropna函数用来删除数据表中包含空值的数据
@@ -186,7 +185,7 @@ Python中处理空值的方法比较灵活，可以使用Dropna函数用来删�
 df.dropna(how='any')
 ```
 
-![image](https://github.com/2804983329/data-analysis/blob/master/chulikongzhi2.jpg)
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/chulikongzhi2.jpg)
 
 
 除此之外也可以使用数字对空值进行填充，下面的代码使用fillna函数对空值字段填充数字0
@@ -208,7 +207,7 @@ df['price'].fillna(df['price'].mean())
 5    4432.0
 Name: price, dtype: float64
 ```
-![image](https://github.com/2804983329/data-analysis/blob/master/chulikongzhi3.jpg)
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/chulikongzhi3.jpg)
 
 ### 清理空格    
 除了空值，字符中的空格也是数据清洗中一个常见的问题，
@@ -224,13 +223,13 @@ df['city']=df['city'].map(str.strip)
 df['city']=df['city'].str.lower()
 ```
 
-![image](https://github.com/2804983329/data-analysis/blob/master/daxiaoxiezhuanhuan1.jpg)   
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/daxiaoxiezhuanhuan1.jpg)   
 
 
 ### 更改数据格式   
 Excel中通过“设置单元格格式”功能可以修改数据格式，python中通过astype函数来修改数据格式
 
-![image](https://github.com/2804983329/data-analysis/blob/master/genggaishujugeshi1.jpg)   
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/genggaishujugeshi1.jpg)   
 
 python中查看数据格式的函数是dtype，与之对应的是astype函数，用来更高数据格式，下面的代码中将price字段的值修改成int格式。
 ```python
@@ -252,7 +251,7 @@ Rename是更改列名称的函数，我们将数据表中的category列更改为
 #更改列名称
 df.rename(columns={'category': 'category-size'})
 ```
-![image](https://github.com/2804983329/data-analysis/blob/master/genggailiemingcheng1.jpg) 
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/genggailiemingcheng1.jpg) 
 
 ### 删除重复值   
 很多数据表中还包含重复值的问题，Excel 的数据目录下有“删除重复项”的功能，可以用来删除数据表中的重复值。默认 Excel 会保留最先出现的数据，删除后面重复出现的数据。   
