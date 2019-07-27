@@ -152,6 +152,7 @@ Head函数用来查看数据表中的前N行数据，默认head()显示前10行�
 #查看前3行数据
 ```
 ![image](https://github.com/2804983329/data-analysis/blob/master/picture/chakanqiansanhangshuju.jpg)
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/chakanqiansanhangshuju.jpg)
 
 ### 查看后数据    
 tail函数和head函数相反，用来查看数据表中后N行的数据，   
