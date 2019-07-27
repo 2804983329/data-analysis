@@ -380,9 +380,23 @@ df_inner.loc[(df_inner['city'] == 'beijing') & (df_inner['price'] >= 4000), 'sig
 ```
 ![image](https://github.com/2804983329/data-analysis/blob/master/picture/duifuhetiaojiandeshujujinxingfenzu.jpg) 
 
-![image](https://github.com/2804983329/data-analysis/blob/master/picture/.jpg) 
-![image](https://github.com/2804983329/data-analysis/blob/master/picture/.jpg) 
-![image](https://github.com/2804983329/data-analysis/blob/master/picture/.jpg) 
+### 数据分列
+与数据分组相反的是对数值进行分列，Excel中的数据目录下提供“分列”功能，在python中使用split函数实现分列。
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/Excelfenlie.jpg) 
+在数据表中 category 列中的数据包含有两个信息，前面的数字为类别 id，后面的字母为 size 值。中间以连字符进行连接。我们使用 split 函数对这个字段进行拆分，并将拆分后的数据表匹配回原数据表中。
+```python
+#对 category 字段的值依次进行分列，并创建数据表，索引值为 df_inner 的索引列，列名称为 category 和 size
+pd.DataFrame((x.split('-') for x in df_inner['category']),index=df_inner.index,columns=['category','size'])
+```
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/pythonfenlie.jpg) 
+```python
+#将完成分列后的数据表与原 df_inner 数据表进行匹配
+df_inner=pd.merge(df_inner,split,right_index=True, left_index=True)
+```
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/shujubiaopipei.jpg) 
+
+## 05 数据提取
+
 ![image](https://github.com/2804983329/data-analysis/blob/master/picture/.jpg) 
 ![image](https://github.com/2804983329/data-analysis/blob/master/picture/.jpg) 
 ![image](https://github.com/2804983329/data-analysis/blob/master/picture/.jpg) 
