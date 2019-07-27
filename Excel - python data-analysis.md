@@ -388,7 +388,7 @@ df_inner.loc[(df_inner['city'] == 'beijing') & (df_inner['price'] >= 4000), 'sig
 #对 category 字段的值依次进行分列，并创建数据表，索引值为 df_inner 的索引列，列名称为 category 和 size
 pd.DataFrame((x.split('-') for x in df_inner['category']),index=df_inner.index,columns=['category','size'])
 ```
-![image](https://github.com/2804983329/data-analysis/blob/master/picture/pythonfenlie.jpg) 
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/pythonfenlie.png) 
 ```python
 #将完成分列后的数据表与原 df_inner 数据表进行匹配
 df_inner=pd.merge(df_inner,split,right_index=True, left_index=True)
