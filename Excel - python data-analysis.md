@@ -396,7 +396,79 @@ df_inner=pd.merge(df_inner,split,right_index=True, left_index=True)
 ![image](https://github.com/2804983329/data-analysis/blob/master/picture/shujubiaopipei.jpg) 
 
 ## 05 数据提取
+数据提取主要通过使用三个函数（loc、iloc、和ix）来进行的，其中loc函数按照标签值进行提取，iloc按照位置进行提取，ix可以同时按标签和位置进行提取。
+### 按标签提取（loc）   
+Loc函数按数据表的索引标签进行提取，如下提取索引列为3的单条数据
+```python
+#按索引提取单行的数值
+df_inner.loc[3]
+id 1004
+date 2013-01-05 00:00:00
+ city shenzhen
+ category 110-C
+ age 32
+ price 5433
+ gender female
+m-point 40
+pay Y
+group high
+sign NaN
+category_1 110
+size C
+Name: 3, dtype: object
+```
+使用冒号可以限定提取数据的范围，冒号前面为开始的标签值，后面为结束的标签值，如下提取了0到5的数据行
+```python
+#按索引提取区域行数值
+df.inner.loc[0:5]
+```
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/tiququyuhangshuzhi.jpg) 
+Reset_index函数用于恢复索引，此处重新将date字段的日期设置为数据表的索引，并按日期进行数据提取。
 
+```python
+#重设索引
+df_inner.reset_index()
+```
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/chongshesuoyin.jpg) 
+```python
+#设置日期为索引
+df_inner=df_inner.set_index('date')
+```
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/shezhiriqiweisuoyin.jpg) 
+使用冒号限定提取数据的范围，冒号前面为空表示从0开始。提取所有2013年1月4日以前的数据。
+```python
+#提取4日之前的所有数据
+df_inner[:'2013-01-04']
+```
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/tiqusiriqiansuoyoushuju.jpg) 
+
+### 按位置提取（iloc）
+
+
+```python
+
+```
 ![image](https://github.com/2804983329/data-analysis/blob/master/picture/.jpg) 
 ![image](https://github.com/2804983329/data-analysis/blob/master/picture/.jpg) 
 ![image](https://github.com/2804983329/data-analysis/blob/master/picture/.jpg) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
