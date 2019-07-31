@@ -443,6 +443,90 @@ df_inner[:'2013-01-04']
 ![image](https://github.com/2804983329/data-analysis/blob/master/picture/tiqusiriqiansuoyoushuju.jpg) 
 
 ### 按位置提取（iloc）
+使用iloc函数按位置对数据表中的数据进行提取，这里的冒号前后的数字不再是索引的标签名称，而是数据所在的位置，从0开始。
+```python
+#使用iloc按位置区域提取数据
+df_inner.iloc(:3,:2)
+```
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/iloc1.jpg) 
+iloc函数除了可以按区域提取数据，还可以按位置逐条提取，前面方括号中的0，2，5表示数据所在行的位置，后面方括号中的数表示所在列的位置。
+```python
+#使用iloc按位置单独提取数据
+df_inner.iloc[[0,2,5],[4,5]]
+```
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/iloc2.jpg) 
+### 按标签和位置提取（ix）   
+ix是loc和iloc的混合，既能按索引标签提取，也能按位置进行数据提取。下面代码中行的位置按索引日期设置，列按位置设置。
+
+```python
+#使用ix按索引标签额位置混合提取数据
+df_inner.ix[:'2013-01-03',4]
+```
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/ix1.jpg) 
+### 按条件提取（区域和条件值）
+除了按标签和位置提取数据外，还可以按具体的条件进行数据提取。下面使用loc和isin两个函数配合使用，按指定条件对数据进行提取。
+使用isin函数对city中的值是否为beijing进行判断。
+```python
+#判断city列的值是否为beijing
+df_inner['city'].isin(['beijing'])
+
+ date
+ 2013-01-02 True
+ 2013-01-05 False
+ 2013-01-07 True
+ 2013-01-06 False
+ 2013-01-03 False
+2013-01-04 False
+Name: city, dtype: bool
+```
+將isin函数嵌套到loc的数据提取函数中，将判断结果为True数据提取出来。这里把判断条件改为city值是否为beijing和shanghai。如果是就把这条数据提取出来。
+
+```python
+#先判断city列里是否包含beiijing和shanghai，然后将符合条件的数据提取出来
+df_inner.loc[df_inner['city'].isin(['beijing','shanghai'])]
+```
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/tiaojiantiqu1.jpg) 
+数据提取还可以完成类似数据分列的广州，从合并的数值中提取出指定的数值
+
+```python
+categroy=df_inner['categroy']
+ 0 100-A
+ 3 110-C
+ 5 130-F
+ 4 210-A
+ 1 100-B
+ 2 110-A
+ Name: category, dtype: object
+ 
+#提取前三个字符，并生成数据表
+pd.Dataframe(categrop.str[:3])
+```
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/shujutiqufenlie.png)
+
+
+## 06 数据筛选   
+数据筛选：通过使用与，或，非三个天骄配合大于，小于和等于对数据进行筛选，并进行计数和求和。与excel中的筛选功能和countifs和sumifs功能相似。
+
+
+### 按条件筛选（与，或，非）   
+Excel 数据目录下提供了“筛选”功能，用于对数据表按不同的条件进行筛选。Python 中使用 loc 函数配合筛选条件来完成筛选功能。配合 sum 和 count 函数还能实现 excel 中 sumif 和 countif 函数的功能。
+
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/excel-tiaojianshaixuan.jpg) 
+使用“与”条件进行筛选，年龄大于25岁，并且城市为beijing。筛选后只有一条数据符合要求
+```python
+#使用“与”条件进行筛选
+df_inner.loc[(df_inner['age'] > 25) & (df_inner['city'] == 'beijing'),['id','city','age','categroy','gender']]
+```
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/yutiaojianshaixuan.jpg) 
+使用“或”条件进行筛选，年龄大于25岁或城市为beijing。筛选后有6条数据符合要求
+```python
+#使用“或”条件筛选
+df_inner.loc[(df_inner['age'] > 25) | (df_inner['city'] == 'beijing'),['id','city','age','category','gender']].sort(['age'])
+```
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/huotiaojianshaixuan.jpg) 
+
+
+
 
 
 ```python
@@ -450,25 +534,3 @@ df_inner[:'2013-01-04']
 ```
 ![image](https://github.com/2804983329/data-analysis/blob/master/picture/.jpg) 
 ![image](https://github.com/2804983329/data-analysis/blob/master/picture/.jpg) 
-![image](https://github.com/2804983329/data-analysis/blob/master/picture/.jpg) 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
