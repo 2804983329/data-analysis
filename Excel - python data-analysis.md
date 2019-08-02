@@ -524,7 +524,36 @@ df_inner.loc[(df_inner['age'] > 25) & (df_inner['city'] == 'beijing'),['id','cit
 df_inner.loc[(df_inner['age'] > 25) | (df_inner['city'] == 'beijing'),['id','city','age','category','gender']].sort(['age'])
 ```
 ![image](https://github.com/2804983329/data-analysis/blob/master/picture/huotiaojianshaixuan.jpg) 
+在前面的代码后增加price字段以及sum函数，按筛选后的结果将price字段值进行求和，相当于excel中sumifs的功能
+```python
+#对筛选后的数据按price字段进行求和
+df_inner.loc[(df_inner['age'] > 25) | (df_inner['city'] == 'beijing'),['id','city','age','category','gender','price']].sort(['age']).price.sum()
 
+```
+使用“非”条件进行筛选，城市不等于beijing。符合条件的数据有4条。将筛选结果按id列进行排序。
+```python
+#使用“非”条件进行筛选
+df_inner.loc[(df_inner['city'] != 'beijing'), ['id','city','age','category','gender']].sort(['id'])
+```
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/feitiaojianshaixuan.jpg) 
+在前面的代码后面增加city列，并用count函数进行计数，相当于excel中的countifs函数的功能。
+```python
+#对筛选后的数据按 city 列进行计数
+df_inner.loc[(df_inner['city'] != 'beijing'), ['id','city','age','category','gender']].sort(['id']).city.count()
+
+```
+还有一种筛选的方式是用query函数。下面是具体的代码和筛选结果。
+```python
+使用 query 函数进行筛选
+df_inner.query('city == ["beijing", "shanghai"]')
+```
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/queryhanshushaixuan.jpg) 
+在前面的代码后增加 price 字段和 sum 函数。对筛选后的 price 字段进行求和，相当于 excel 中的 sumifs 函数的功能。
+```python
+#对筛选后的结果按 price 进行求和
+df_inner.query('city == ["beijing", "shanghai"]').price.sum()
+```
+以下是第三篇，介绍第 7-9 部分的内容，数据汇总，数据统计，和数据输出。
 
 
 
