@@ -615,6 +615,141 @@ pd.pivot_table(df_inner,index=["city"],values=["price"],columns=["size"],aggfunc
 
 ### 数据采样   
 
+Excel的数据分析功能中提供了数据抽样的功能，如下图所示。python通过sanple函数完成数据采样。
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/shujucaiyang1.jpg) 
+
+sample是进行数据采样的函数，设置n的数量就可以了。函数自动返回采样的结果。
+```python
+#简单的数据采样
+df_inner.sample(n=3)
+```
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/shujucaiyang2.jpg) 
+Weightscan 参数是采样的权重，通过设置不同的权重可以更高采样的结果，权重高的数据将更有希望被选中，这里手动设置6条数据的权重值，将前面的4个设置为0，后面的两个设置为0.5。
+
+```python
+#手动设置采样权重
+weights = [0, 0, 0, 0, 0.5, 0.5]
+df_inner.sample(n=2, weights=weights)
+```
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/shujucaiyang3.jpg) 
+从采样的结果可以看出，后面两条权重高的数据被选中。
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/shujucaiyang4.jpg) 
+
+sample函数还有一个参数replace，用来设置采样后是否放回。
+```python
+#采样后不放回
+df_inner.sample(n=6, replace=False)
+```
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/shujucaiyang5.jpg) 
+```python
+#采样后放回
+df_inner.sample(n=6, replace=True)
+```
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/shujucaiyang6.jpg) 
+
+### 描述统计
+Excel中的数据分析中提供了描述统计的功能吗。python中可以通过Describe对数据进行描述统计。
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/miaoshutongji1.jpg) 
+
+Describe 函数是进行描述统计的函数，自动生成数据的数量，均值，标准差等数据。下面的代码中对数据表进行描述统计，并使用 round 函数设置结果显示的小数位。并对结果数据进行转置。
+
+```python
+#数据表描述性统计
+df_inner.describe().round(2).T
+```
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/shujubiaomiaoshuxingtongji1.jpg) 
+#### 标准差
+Python 中的 Std 函数用来接算特定数据列的标准差。
+```python 
+#标准差
+df_inner['price'].std()
+1523.3516556155596
+```
+
+#### 协方差 
+
+Excel 中的数据分析功能中提供协方差的计算，python 中通过 cov 函数计算两个字段或数据表中各字段间的协方差。
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/xiefangcha1.jpg) 
+
+Cov 函数用来计算两个字段间的协方差，可以只对特定字段进行计算，也可以对整个数据表中各个列之间进行计算。
+```python
+#两个字段间的协方差
+df_inner['price'].cov(df_inner['m-point'])
+17263.200000000001
+```
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/xiefangcha2.jpg) 
+
+#### 相关分析   
+Excel 的数据分析功能中提供了相关系数的计算功能，python 中则通过 corr 函数完成相关分析的操作，并返回相关系数。
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/xiangguangfenxi1.jpg) 
+
+Corr 函数用来计算数据间的相关系数，可以单独对特定数据进行计算，也可以对整个数据表中各个列进行计算。相关系数在-1 到 1 之间，接近 1 为正相关，接近-1 为负相关，0 为不相关。
+```python
+#相关性分析
+df_inner['price'].corr(df_inner['m-point'])
+0.77466555617085264
+
+#数据表相关性分析
+df_inner.corr()
+```
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/xiangguangfenxi2.jpg) 
+
+
+## 09 数据输出
+
+第九部分是数据输出，处理和分析完的数据可以输出为 xlsx 格式和 csv 格式。
+
+写入 excel
+```python
+#输出到 excel 格式
+df_inner.to_excel('excel_to_python.xlsx', sheet_name='bluewhale_cc')
+```
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/xieruexcel1.jpg) 
+
+写入 csv
+```python
+#输出到 CSV 格式
+df_inner.to_csv('excel_to_python.csv')
+```
+
+在数据处理的过程中，大部分基础工作是重复和机械的，对于这部分基础工作，我们可以使用自定义函数进行自动化。以下简单介绍对数据表信息获取自动化处理。
+```python
+ #创建数据表
+ df = pd.DataFrame({"id":[1001,1002,1003,1004,1005,1006],
+ "date":pd.date_range('20130102', periods=6),
+ "city":['Beijing ', 'SH', ' guangzhou ', 'Shenzhen', 'shanghai', 'BEIJING '],
+ "age":[23,44,54,32,34,32],
+ "category":['100-A','100-B','110-A','110-C','210-A','130-F'],
+ "price":[1200,np.nan,2133,5433,np.nan,4432]},
+ 8columns =['id','date','city','category','age','price'])
+
+#创建自定义函数
+def table_info(x):
+    shape=x.shape
+    types=x.dtypes
+    colums=x.columns
+    print("数据维度(行，列):\n",shape)
+    print("数据格式:\n",types)
+    print("列名称:\n",colums)
+
+#调用自定义函数获取 df 数据表信息并输出结果
+table_info(df)
+
+数据维度(行，列):
+(6, 6)
+数据格式:
+id int64
+date datetime64[ns]
+city object
+category object
+age int64
+price float64
+dtype: object
+列名称:
+Index(['id', 'date', 'city', 'category', 'age', 'price'], dtype='object')
+
+````
+
 
 
 
