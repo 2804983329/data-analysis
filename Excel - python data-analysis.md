@@ -555,6 +555,48 @@ df_inner.query('city == ["beijing", "shanghai"]').price.sum()
 ```
 以下是第三篇，介绍第 7-9 部分的内容，数据汇总，数据统计，和数据输出。
 
+## 07 数据汇总   
+第七部分是对数据进行分类汇总，Excel中使用分类汇总和数据透视可以按特定维度对数据进行汇总，python中使用的主要函数是groupby 和 privot_tabel。下面分别介绍两个函数
+
+### 分类汇总   
+Excel的数据目录下提供了“分类汇总”功能，可以按指定的字段和汇总方式对数据表进行汇总。python中通过Groupby函数完成相应的操作，并且可以支持多级分类汇总。
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/fenleihuizong1.jpg) 
+Groupby是进行分类汇总的函数，使用方法简单，制定要分组的列名称就可以，也可以同时制定多个列名称，groupby按列名称出现的顺序进行分组。同时要制定分组后的汇总方式，常见的是计数和求和两种
+```python
+#对所有的列进行计数汇总
+df_inner.groupby('city').count()
+```
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/fenleihuizong2.jpg) 
+
+可以在groupby中设置列名称来对特定的列进行汇总。下面的代码中按城市对id字段进行汇总计数。
+```python
+#对特定的ID列进行计数汇总
+df_inner.groupby('city')['id'].count()
+city
+beijing 2
+guangzhou 1
+shanghai 2
+shenzhen 1
+Name: id, dtype: int64
+```
+在前面的基础上增加第二个列名称，分别对city 和size 两个字段进行计数汇总。
+```python
+#对两个字段进行汇总计数
+df_inner.groupby(['city','size'])['id'].count()
+city size
+beijing A 1
+F 1
+guangzhou A 1
+shanghai A 1
+B 1
+shenzhen C 1
+Name: id, dtype: int64
+```
+除了计数和求和外，还可以对汇总后的数据同时按多个维度进行计算，下面的的代码中按城市对price字段进行汇总，并分别计算price的数量，总金额和平均金额。
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/.jpg) 
+
+
+
 
 
 
@@ -563,3 +605,19 @@ df_inner.query('city == ["beijing", "shanghai"]').price.sum()
 ```
 ![image](https://github.com/2804983329/data-analysis/blob/master/picture/.jpg) 
 ![image](https://github.com/2804983329/data-analysis/blob/master/picture/.jpg) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
