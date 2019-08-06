@@ -593,7 +593,11 @@ shenzhen C 1
 Name: id, dtype: int64
 ```
 除了计数和求和外，还可以对汇总后的数据同时按多个维度进行计算，下面的的代码中按城市对price字段进行汇总，并分别计算price的数量，总金额和平均金额。
-![image](https://github.com/2804983329/data-analysis/blob/master/picture/.jpg) 
+```python
+#对 city 字段进行汇总并计算 price 的合计和均值。
+df_inner.groupby('city')['price'].agg([len,np.sum, np.mean])
+```
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/fenleihuizong3.jpg) 
 
 
 
