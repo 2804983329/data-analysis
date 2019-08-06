@@ -599,6 +599,25 @@ df_inner.groupby('city')['price'].agg([len,np.sum, np.mean])
 ```
 ![image](https://github.com/2804983329/data-analysis/blob/master/picture/fenleihuizong3.jpg) 
 
+### 数据透视   
+Excel中的插入目录下提供“数据透视表”功能对数据表按特定维度进行汇总。python中也提供了数据透视表功能。通过pivot_table函数实现同样的效果。
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/shujutoushi1.jpg) 
+数据透视表也是常用的一种数据分类汇总方式，并且功能上比groupby要强大一些，下面的代码中设定city为行字段，size为列字段，price为值字段，分别计算price的数量和金额并且按行与列进行汇总。
+```python
+#数据透视表
+pd.pivot_table(df_inner,index=["city"],values=["price"],columns=["size"],aggfunc=[len,no.sum],fill_value=0,margins=True)
+```
+![image](https://github.com/2804983329/data-analysis/blob/master/picture/shujutoushi2.jpg) 
+
+
+## 08 数据统计   
+第九部分为数据统计，这里主要介绍数据采样，标准差，协方差和相关系数的使用方法。
+
+### 数据采样   
+
+
+
+
 
 
 
