@@ -104,7 +104,7 @@ print("错误率是："+str(float(x)/float(num)))
 
 
 
-
+ceshi 123456
 
 
 
