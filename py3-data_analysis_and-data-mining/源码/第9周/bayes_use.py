@@ -90,7 +90,7 @@ for i in range(0,num):
     thislabel=seplabel(thisfilename)#seplabel 返回label
     #print(thislabel)
     thisdataarray=datatoarray("D:/Python35/testdata/"+thisfilename) #datatoarray加载数据，前面创建的函数
-    label=bys.btest(thisdataarray,labelsall)
+    label=bys.btest(thisdataarray,labelsall)  #识别
     #print("该数字是:"+str(thislabel)+",识别出来的数字是："+str(label))
     if(label!=thislabel):
         x+=1
