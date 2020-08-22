@@ -87,7 +87,7 @@ num=len(testfileall)
 x=0
 for i in range(0,num):
     thisfilename=testfileall[i]  #对应的文件名
-    thislabel=seplabel(thisfilename)
+    thislabel=seplabel(thisfilename)#seplabel 返回label
     #print(thislabel)
     thisdataarray=datatoarray("D:/Python35/testdata/"+thisfilename)
     label=bys.btest(thisdataarray,labelsall)
