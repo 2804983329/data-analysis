@@ -31,7 +31,7 @@ for i in range(0,len(y)):
 xf=pda.DataFrame(x)
 yf=pda.DataFrame(y)
 x2=xf.as_matrix().astype(int)
-y2=yf.as_matrix().astype(int)
+y2=yf.as_matrix().astype(int) #转为两位维
 #使用人工神经网络模型
 from keras.models import Sequential
 from keras.layers.core import Dense,Activation
