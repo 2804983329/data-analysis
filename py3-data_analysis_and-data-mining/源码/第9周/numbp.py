@@ -45,13 +45,13 @@ from keras.models import Sequential
 from keras.layers.core import Dense,Activation
 model=Sequential()
 #输入层
-model.add(Dense(10,input_dim=1024))  #设置为tx2的维度
+model.add(Dense(10,input_dim=1024))  #设置为tx2的维度   数据形状shape(a,b)  a是记录数 b是维度
 model.add(Activation("relu"))
 #输出层
 model.add(Dense(1,input_dim=1))
 model.add(Activation("sigmoid"))
 #模型的编译
-model.compile(loss="mean_squared_error",optimizer="adam")
+model.compile(loss="mean_squared_error",optimizer="adam")  #mean_squared_error 均方误差  和  binary_crossentropy 二分类
 #训练
 model.fit(tx2,ty2,nb_epoch=10000,batch_size=6)
 #预测分类
