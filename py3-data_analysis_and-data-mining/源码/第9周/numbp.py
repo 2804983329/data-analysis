@@ -45,7 +45,7 @@ from keras.models import Sequential
 from keras.layers.core import Dense,Activation
 model=Sequential()
 #输入层
-model.add(Dense(10,input_dim=1024))
+model.add(Dense(10,input_dim=1024))  #设置为tx2的维度
 model.add(Activation("relu"))
 #输出层
 model.add(Dense(1,input_dim=1))
