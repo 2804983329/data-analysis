@@ -35,9 +35,9 @@ def traindata():
         trainarr[i,:]=datatoarray("D:/Python35/traindata/"+thisfname)
     return trainarr,labels
 trainarr,labels=traindata()
-xf=pda.DataFrame(trainarr)
+xf=pda.DataFrame(trainarr) #转为数据框格式：一种表格型数据结构
 yf=pda.DataFrame(labels)
-tx2=xf.as_matrix().astype(int)
+tx2=xf.as_matrix().astype(int) #设置类型为int格式
 ty2=yf.as_matrix().astype(int)
 
 #使用人工神经网络模型
@@ -65,6 +65,5 @@ import numpy as npy
 x3=npy.array([[1,-1,-1,1],[1,1,1,1],[-1,1,-1,1]])
 rst=model.predict_classes(tx2).reshape(len(tx2))
 print(rst)
-
 
 #ceshi
