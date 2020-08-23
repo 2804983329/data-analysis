@@ -66,4 +66,4 @@ x3=npy.array([[1,-1,-1,1],[1,1,1,1],[-1,1,-1,1]])
 rst=model.predict_classes(tx2).reshape(len(tx2))
 print(rst)
 
-#ceshi
+#20200823
