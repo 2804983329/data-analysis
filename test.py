@@ -12,3 +12,10 @@ def datatoarry(fname):
         for j in range(0,32):
             arr.append(int(thisline[j]))
     return arr
+#建立函数取文件名前缀
+def seplabel(fname):
+    filestr=fnam.split(".")[0]
+    label=int(filestr.split("_")[0])
+    return label
+#建立训练数据
+
