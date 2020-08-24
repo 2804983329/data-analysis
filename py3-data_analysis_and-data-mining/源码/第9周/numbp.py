@@ -25,8 +25,7 @@ def traindata():
     labels=[]
     trainfile=listdir("D:/Python35/traindata")
     num=len(trainfile)
-    #长度1024（列），每一行存储一个文件
-    #用一个数组存储所有训练数据，行：文件总数，列：1024
+    #长度1024（列），每一行存储一个文件    #用一个数组存储所有训练数据，行：文件总数，列：1024
     trainarr=zeros((num,1024))
     for i in range(0,num):
         thisfname=trainfile[i]
@@ -67,4 +66,4 @@ rst=model.predict_classes(tx2).reshape(len(tx2))
 print(rst)
 
 #20200823测试提交下拉  下拉测试2.0
-#20200823测试提交下拉  下拉测试2.0
+#20200823测试提交下拉  下拉测试2.0`
