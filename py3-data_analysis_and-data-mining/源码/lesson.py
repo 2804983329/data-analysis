@@ -4,7 +4,7 @@ import pandas as pda
 filename="D:\\Python35\\data\\lesson_buy.xls"
 dataframe=pda.read_excel(filename,header=None)
 #转化一下数据
-change=lambda x:pda.Series(1,index=x[pda.notnull(x)])
+change=lambda x:pda.Series(1,index=x[pda.notnull(x)])  #将该处非空转为1
 mapok=map(change,dataframe.as_matrix())
 data=pda.DataFrame(list(mapok)).fillna(0)
 print(data)
