@@ -41,6 +41,7 @@ plt.scatter(x,y,marker='.',
             s = np.random.randn(1000)*100,
             cmap = 'Reds',
             c = y,
+            alpha=0.8)
 #s:散点的大小
 #c:散点的颜色
 #vmin，vmax：亮度设置，标量
