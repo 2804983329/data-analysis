@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cc08b451-2d89-4e62-bdcf-b222729a36b8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/data-analysis.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/data-analysis.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/数据分析python升级/00/02数据解析技巧/numpy.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/数据分析python升级/00/02数据解析技巧/numpy.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +42,7 @@
       <option name="presentableId" value="Default" />
       <updated>1601195290191</updated>
       <workItem from="1601195291421" duration="131000" />
-      <workItem from="1601195454085" duration="2887000" />
+      <workItem from="1601195454085" duration="3303000" />
     </task>
     <servers />
   </component>
